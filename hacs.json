@@ -1,6 +1,5 @@
 {
     "name": "EasyBox Connect",
-    "hide_default_branch": false,
     "zip_release": true,
     "filename:": "ha_easy_connect.zip"
 }
