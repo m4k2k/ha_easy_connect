@@ -47,18 +47,3 @@ repos:
       - id: check-json
         exclude: (.vscode|.devcontainer)
         files: ^ha_conf/custom_components/easybox_connect/\w*.py
-# pre-commit run --verbose --config "D:\Dev\Proj\ha_dev\ha_conf\prec\.pre-commit-config.yaml" --hook-stage manual demo --files 'D:\Dev\Proj\ha_dev\ha_conf\custom_components\easybox_connect\demo\demo-1\dem1.py'
-# pre-commit run --verbose --config "D:\Dev\Proj\ha_dev\ha_conf\prec\.pre-commit-config.yaml" --hook-stage manual demo --all-files
-
-
-# pre-commit run --config "D:\Dev\Proj\ha_dev\ha_conf\custom_components\easybox_connect\.pre-commit-config.yaml" --all-files
-
-
-# - repo: local
-#   hooks:
-#     - id: demo
-#       name: Run Demo Mode
-#       stages: [manual]
-#       entry: powershell write-host "NOP:"
-#       language: system
-#       files: ^ha_conf/custom_components/easybox_connect/\w*.py
