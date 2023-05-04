@@ -1,0 +1,8 @@
+{
+  "title": "EasyBox Connect Custom Sensor",
+  "config": {
+    "abort": {
+      "already_configured": "Device is already configured"
+    }
+  }
+}
