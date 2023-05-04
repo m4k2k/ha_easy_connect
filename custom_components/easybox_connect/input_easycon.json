@@ -1,0 +1,41 @@
+{
+    "pyeasycmdCompatiblity": 0.1,
+    "easyboxConnectCompatibility": 0.1,
+    "routerInfo": [
+        {
+            "key": "InternetGatewayDevice.DeviceInfo.SoftwareVersion",
+            "name": "Easybox Firmware Version",
+            "hsType": "sw_version"
+        }
+    ],
+    "queryKeys": [
+        {
+            "key": "InternetGatewayDevice.WANDevice.6.WANDSLInterfaceConfig.Status",
+            "name": "Online Status"
+        },
+        {
+            "key": "InternetGatewayDevice.WANDevice.6.WANDSLInterfaceConfig.UpstreamCurrRate",
+            "name": "Current Upstream Rate",
+            "hsType": "UnitOfDataRate.KILOBITS_PER_SECOND",
+            "hsClass": "SensorDeviceClass.DATA_RATE"
+        },
+        {
+            "key": "InternetGatewayDevice.WANDevice.6.WANDSLInterfaceConfig.DownstreamCurrRate",
+            "name": "Current Downstream Rate",
+            "hsType": "UnitOfDataRate.KILOBITS_PER_SECOND",
+            "hsClass": "SensorDeviceClass.DATA_RATE"
+        },
+        {
+            "key": "InternetGatewayDevice.WANDevice.6.WANDSLInterfaceConfig.UpstreamMaxRate",
+            "name": "Max Upstream Rate",
+            "hsType": "UnitOfDataRate.KILOBITS_PER_SECOND",
+            "hsClass": "SensorDeviceClass.DATA_RATE"
+        },
+        {
+            "key": "InternetGatewayDevice.WANDevice.6.WANDSLInterfaceConfig.DownstreamMaxRate",
+            "name": "Max Downstream Rate",
+            "hsType": "UnitOfDataRate.KILOBITS_PER_SECOND",
+            "hsClass": "SensorDeviceClass.DATA_RATE"
+        }
+    ]
+}
