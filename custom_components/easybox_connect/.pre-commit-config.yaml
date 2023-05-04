@@ -1,0 +1,64 @@
+repos:
+  - repo: https://github.com/charliermarsh/ruff-pre-commit
+    rev: v0.0.262
+    hooks:
+      - id: ruff
+        args:
+          - "--ignore=E501"
+          - --fix
+        files: ^ha_conf/custom_components/easybox_connect/\w*.py
+  - repo: https://github.com/psf/black
+    rev: 23.3.0
+    hooks:
+      - id: black
+        args:
+          - --quiet
+        files: ^ha_conf/custom_components/easybox_connect/\w*.py
+  - repo: https://github.com/PyCQA/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort
+        files: ^ha_conf/custom_components/easybox_connect/\w*.py
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v2.7.1
+    hooks:
+      - id: prettier
+        files: ^ha_conf/custom_components/easybox_connect/\w*.py
+  - repo: https://github.com/cdce8p/python-typing-update
+    rev: v0.5.0
+    hooks:
+      # Run `python-typing-update` hook manually from time to time
+      # to update python typing syntax.
+      # Will require manual work, before submitting changes!
+      # pre-commit run --hook-stage manual python-typing-update --all-files
+      - id: python-typing-update
+        stages: [manual]
+        args:
+          - --py310-plus
+          - --force
+          - --keep-updates
+        files: ^ha_conf/custom_components/easybox_connect/\w*.py
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: check-executables-have-shebangs
+        stages: [manual]
+        files: ^ha_conf/custom_components/easybox_connect/\w*.py
+      - id: check-json
+        exclude: (.vscode|.devcontainer)
+        files: ^ha_conf/custom_components/easybox_connect/\w*.py
+# pre-commit run --verbose --config "D:\Dev\Proj\ha_dev\ha_conf\prec\.pre-commit-config.yaml" --hook-stage manual demo --files 'D:\Dev\Proj\ha_dev\ha_conf\custom_components\easybox_connect\demo\demo-1\dem1.py'
+# pre-commit run --verbose --config "D:\Dev\Proj\ha_dev\ha_conf\prec\.pre-commit-config.yaml" --hook-stage manual demo --all-files
+
+
+# pre-commit run --config "D:\Dev\Proj\ha_dev\ha_conf\custom_components\easybox_connect\.pre-commit-config.yaml" --all-files
+
+
+# - repo: local
+#   hooks:
+#     - id: demo
+#       name: Run Demo Mode
+#       stages: [manual]
+#       entry: powershell write-host "NOP:"
+#       language: system
+#       files: ^ha_conf/custom_components/easybox_connect/\w*.py
