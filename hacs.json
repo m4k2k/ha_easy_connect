@@ -1,3 +1,4 @@
 {
-    "name": "EasyBox Connect"
+    "name": "EasyBox Connect",
+    "hide_default_branch": true
 }
