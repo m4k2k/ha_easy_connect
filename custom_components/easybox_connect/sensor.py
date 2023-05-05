@@ -32,6 +32,7 @@ class RouterProperty(TypedDict):
     name: str
     hsType: str | None
     hsClass: str | None
+    hsOptions: list[str] | None
 
 
 # holds ids for entities (not best solution)
@@ -44,6 +45,8 @@ def class_for_name(class_name: str) -> Any:
             return SensorDeviceClass.DATA_RATE
         case "UnitOfDataRate.KILOBITS_PER_SECOND":
             return UnitOfDataRate.KILOBITS_PER_SECOND
+        case "SensorDeviceClass.ENUM":
+            return SensorDeviceClass.ENUM
         # If an exact match is not confirmed, this last case will be used if provided
         case _:
             return None
@@ -198,6 +201,7 @@ class EasySensor(CoordinatorEntity[Any], SensorEntity):
     _attr_device_class: SensorDeviceClass | None = None
     _attr_state_class = SensorStateClass.MEASUREMENT
     entity_id: str | None = None  # type: ignore[assignment]
+    _attr_options: list[str] | None = None
 
     def get_sensor_value(self) -> Any:
         """Retrieve the current sensor value from the coordinator
@@ -264,9 +268,12 @@ class EasySensor(CoordinatorEntity[Any], SensorEntity):
         _unique_id: str,
         _unit: str | None = None,
         _devclass: str | None = None,
+        _options: list[str] | None = None,
         _name: str = "",
     ) -> None:
+        # Pass self, coordinator and unique_id to CoordinatorEntity
         CoordinatorEntity.__init__(self, coord)  # pyright: reportUnknownMemberType=false
+        # Pass self to SensorEntity
         SensorEntity.__init__(self)
 
         self._LOGLCL.debug("__init__ of EasySensor %s", _unique_id)
@@ -288,6 +295,16 @@ class EasySensor(CoordinatorEntity[Any], SensorEntity):
                 self.entity_id,
                 type(self._attr_device_class),
             )
+        if _options is not None:
+            self._attr_options = _options
+            self._LOGLCL.debug(
+                '"%s" assigned the "%s" options',
+                self.entity_id,
+                _options,
+            )
+            self._attr_state_class = None
+            self._LOGLCL.debug('"%s" assigned the state_class None', self.entity_id)
+
         self._attr_extra_state_attributes: MutableMapping[str, Any] = dict({"idx": "", "system_state": ""})
         self._attr_extra_state_attributes["idx"] = _unique_id  # id for integration internal reference
         self._attr_unique_id = f"{DOMAIN}.{_unique_id}"  # only homeassistant internal id
@@ -338,8 +355,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
             rk["hsType"] = None
         if "hsClass" not in rk:
             rk["hsClass"] = None
+        if "hsOptions" not in rk:
+            rk["hsOptions"] = None
         _managed_entity_ids.append(rk["key"])
-        _LOGGER.debug("item: {}".format(rk))
+        _LOGGER.debug("item: %s", rk)
 
     _LOGLCL.info("managed entity ids: %s", _managed_entity_ids)
 
@@ -356,6 +375,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
             _unique_id=rk["key"],
             _unit=rk["hsType"],
             _devclass=rk["hsClass"],
+            _options=rk["hsOptions"],
             _name=rk["name"],
         )
         for rk in router_keys

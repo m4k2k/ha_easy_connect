@@ -11,7 +11,16 @@
     "queryKeys": [
         {
             "key": "InternetGatewayDevice.WANDevice.6.WANDSLInterfaceConfig.Status",
-            "name": "Online Status"
+            "name": "Online Status",
+            "hsClass": "SensorDeviceClass.ENUM",
+            "hsOptions": [
+                "Up",
+                "Initializing",
+                "EstablishingLink",
+                "NoSignal",
+                "Error",
+                "Disabled"
+            ]
         },
         {
             "key": "InternetGatewayDevice.WANDevice.6.WANDSLInterfaceConfig.UpstreamCurrRate",
