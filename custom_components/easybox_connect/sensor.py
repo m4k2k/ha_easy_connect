@@ -196,7 +196,7 @@ class EasySensor(CoordinatorEntity[Any], SensorEntity):
     _LOGLCL.debug("Class of EasySensor of %s", __file__)
 
     _attr_name: str | None
-    _attr_native_unit_of_measurement: str | None
+    _attr_native_unit_of_measurement: str | None = None
     _attr_unique_id: str | None = None
     _attr_device_class: SensorDeviceClass | None = None
     _attr_state_class = SensorStateClass.MEASUREMENT
