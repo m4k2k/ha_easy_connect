@@ -1,5 +1,6 @@
 {
     "name": "EasyBox Connect",
     "zip_release": true,
-    "filename:": "ha_easy_connect.zip"
+    "filename:": "ha_easy_connect.zip",
+    "content_in_root": false
 }
