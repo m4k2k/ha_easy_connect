@@ -10,5 +10,5 @@
   "config_flow": true,
   "iot_class": "local_polling",
   "quality_scale": "",
-  "version": "0.1.0"
+  "version": "0.1.2"
 }
